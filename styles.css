@@ -1,0 +1,97 @@
+@import url("https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap");
+
+body {
+  background: url(https://wallpapers.com/images/hd/movie-theater-background-2048-x-1536-9wlq655dcp63cdi8.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  color: white;
+  font-family: "Poetsen One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+/* //login page image styles */
+#selectUser > div {
+  width: 500px;
+  height: 500px;
+  margin: 30px;
+}
+/* //navigation bar on the top  */
+.navbar {
+  padding: 20px;
+  background-color: rgb(56, 84, 184);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+/* //styles for bootstrap card, using in templates.js */
+.card {
+  margin: 10px;
+  border: 3px solid black;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transform: scale(1.05);
+}
+
+.card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.card-body {
+  background-color: cadetblue;
+  border: none;
+}
+
+/* //styles for bootstrap card, using in templates.js ends here */
+
+/* //single seat styles, in template.js */
+.seat {
+  width: 80px;
+  height: 80px;
+  background-color: rgb(203, 203, 200);
+  margin: 10px;
+  cursor: pointer;
+}
+/* //single movie cover image */
+.movieCoverImgModal img {
+  width: 100%;
+  height: 300px;
+  background-size: contain;
+  background-position: center;
+  margin: 10px;
+}
+
+.modal-content {
+  color: black;
+}
+/* //styles for a seat, for reserved or selected */
+.selected {
+  background-color: rgb(106, 224, 100);
+}
+
+.reserved {
+  background-color: rgb(232, 72, 72);
+}
+/* //styles for a seat, for reserved or selected ends here */
+
+@media (max-width: 1200px) {
+  #selectUser > div {
+    width: 300px;
+    height: 300px;
+    margin: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  #selectUser > div {
+    width: 250px;
+    height: 250px;
+    margin: 10px;
+  }
+}
