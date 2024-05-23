@@ -59,6 +59,14 @@ createMovieBtn.onclick = () => {
     return;
   }
 
+  const totalSeats = parseInt(totalSeatsForm.value); // Convert totalSeatsForm.value to a number
+
+  // Add validation for total seats
+  if (isNaN(totalSeats) || totalSeats < 1 || totalSeats > 500) {
+    alert("Please enter a valid number of seats between 1 and 500");
+    return;
+  }
+
   const newMovieId = getRandomId();
 
   moviesList.push({
@@ -66,8 +74,8 @@ createMovieBtn.onclick = () => {
     title: movieTitleForm.value,
     imageUrl: movieImageUrlForm.value,
     description: movieDescriptionForm.value,
-    totalSeats: totalSeatsForm.value,
-    availableSeats: totalSeatsForm.value,
+    totalSeats: totalSeats, // Use the validated totalSeats value
+    availableSeats: totalSeats,
   });
 
   localStorage.setItem("moviesList", JSON.stringify(moviesList));
