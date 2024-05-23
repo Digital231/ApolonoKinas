@@ -21,6 +21,6 @@ export function movieCardTemplate(movie, isUserAdmin) {
               </div>`;
 }
 //Template to use in showMoviesList() in script.js
-export function showSeatModal(id) {
-  return `<div id="${id}" class="seat"></div>`;
+export function showSeatModal(id, seatNumber) {
+  return `<div id="${id}" class="seat">${seatNumber}</div>`;
 }

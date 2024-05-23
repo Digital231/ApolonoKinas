@@ -17,6 +17,7 @@ const deleteReservationModal = document.getElementById(
 );
 const saveReservationModal = document.getElementById("saveReservationModal");
 const moviesListFromStorage = localStorage.getItem("moviesList");
+const totalSeatsForm = document.getElementById("totalSeatsForm");
 
 let modalMovieTitle = document.getElementById("modalMovieTitle");
 let modalMovieDescription = document.getElementById("modalMovieDescription");
@@ -38,13 +39,21 @@ if (moviesListFromStorage) {
 //click events
 //create single movie click event
 createMovieBtn.onclick = () => {
+  const imageUrlPattern = /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp))$/i;
+
   if (
-    movieTitleForm.value == "" ||
-    movieImageUrlForm.value == "" ||
-    movieDescriptionForm.value == "" ||
-    totalSeatsForm.value == ""
+    movieTitleForm.value === "" ||
+    movieDescriptionForm.value === "" ||
+    totalSeatsForm.value === ""
   ) {
     alert("Please fill all the fields");
+    return;
+  }
+
+  if (!imageUrlPattern.test(movieImageUrlForm.value)) {
+    alert(
+      "Please enter a valid image URL with one of the following extensions: .png, .jpg, .jpeg, .gif, .bmp, or .webp"
+    );
     return;
   }
 
@@ -59,11 +68,10 @@ createMovieBtn.onclick = () => {
     return;
   }
 
-  const totalSeats = parseInt(totalSeatsForm.value); // Convert totalSeatsForm.value to a number
+  const totalSeats = parseInt(totalSeatsForm.value);
 
-  // Add validation for total seats
-  if (isNaN(totalSeats) || totalSeats < 1 || totalSeats > 500) {
-    alert("Please enter a valid number of seats between 1 and 500");
+  if (isNaN(totalSeats) || totalSeats < 1 || totalSeats > 100) {
+    alert("Please enter a valid number of seats between 1 and 100");
     return;
   }
 
@@ -74,7 +82,7 @@ createMovieBtn.onclick = () => {
     title: movieTitleForm.value,
     imageUrl: movieImageUrlForm.value,
     description: movieDescriptionForm.value,
-    totalSeats: totalSeats, // Use the validated totalSeats value
+    totalSeats: totalSeats,
     availableSeats: totalSeats,
   });
 
@@ -272,7 +280,8 @@ function showMoviesList() {
       const movie = moviesList.find((movie) => movie.id == movieID);
       for (let i = 0; i < movie.totalSeats; i++) {
         const seatId = `${movieID}-${i}`;
-        const seatHtml = showSeatModal(seatId);
+        const seatNumber = i + 1;
+        const seatHtml = showSeatModal(seatId, seatNumber);
         seatsModal.innerHTML += seatHtml;
 
         if (reservedSeat.includes(seatId)) {
